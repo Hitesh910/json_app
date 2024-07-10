@@ -11,7 +11,6 @@ class UsersModel {
       this.email,
       this.phone,
       this.website,
-        this.geo,
       this.address,
       this.company});
 

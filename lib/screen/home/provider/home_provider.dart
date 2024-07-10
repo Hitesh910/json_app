@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:json_app2/utils/json_helper.dart';
 
+import '../model/comment_model.dart';
+import '../model/photos_model.dart';
 import '../model/post_model.dart';
 import '../model/users_model.dart';
 class HomeProvider with ChangeNotifier
 {
   List<PostModel> postList = [];
-  List commentList = [];
+  List<CommentsModel> commentsList = [];
   List albumList = [];
-  List photosList = [];
+  List<PhotosModel> photosList = [];
   List todosList = [];
   List<UsersModel> usersList = [];
 
@@ -18,9 +20,9 @@ class HomeProvider with ChangeNotifier
   {
     // JsonHelper jsonHelper = JsonHelper();
     postList = await JsonHelper.helper.postJson();
-   // commentList = await jsonHelper.commentJson();
+    commentsList = await JsonHelper.helper.commentsJson();
    // albumList = await jsonHelper.albumJson();
-   // photosList = await jsonHelper.photosJson();
+    photosList = await JsonHelper.helper.photosJson();
    // todosList = await jsonHelper.todosJson();
    usersList = await JsonHelper.helper.usersJson();
    notifyListeners();
