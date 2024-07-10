@@ -10,7 +10,7 @@ void main() {
         value: HomeProvider(),
       ),
     ],
-    child:  MaterialApp(routes: app_routes),
+    child:  MaterialApp(debugShowCheckedModeBanner: false,routes: app_routes),
   )
       );
 }

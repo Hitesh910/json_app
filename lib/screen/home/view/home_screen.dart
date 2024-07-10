@@ -31,16 +31,43 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: const Text("Json"),
         ),
-        body: Column(
-          children: [
-            ElevatedButton(
-                onPressed: () {
-                  showBottom();
-                },
-                child: Text("Json")),ElevatedButton(onPressed: () {
-                  showBottom2();
-                }, child: Text("Comment"))
-          ],
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    showBottom();
+                  },
+                  child: const Text("Json")),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    showBottom2();
+                  },
+                  child: const Text("Comment")),
+              ElevatedButton(
+                  onPressed: () {
+                    showBottom3();
+                  },
+                  child: Text("Album")),
+              ElevatedButton(
+                  onPressed: () {
+                    showBottom4();
+                  },
+                  child: Text("photos")),
+              ElevatedButton(
+                  onPressed: () {
+                    showBottom5();
+                  },
+                  child: Text("todos")),
+              ElevatedButton(onPressed: () {
+                showBottom6();
+              }, child: Text("Users"))
+            ],
+          ),
         )
         // ListView.builder(
         //   itemCount: providerW!.postList.length,
@@ -75,7 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 "User Id :- ${providerR!.postList[index]['userId']}"),
                             Text(
                               "body :- ${providerR!.postList[index]['body']}",
-                              style: TextStyle(overflow: TextOverflow.ellipsis),
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis),
                             ),
                           ],
                         ),
@@ -88,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    Divider(),
+                    const Divider(),
                   ],
                 );
               },
@@ -99,43 +127,252 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void showBottom2(){
-    scaffoldKey.currentState!.showBottomSheet((context) => BottomSheet(onClosing: () {
-
-    }, builder: (context) {
-      return Container(
-        alignment: Alignment.topCenter,
-        child: ListView.builder(
-          itemCount: providerW!.commentList.length,
-          itemBuilder: (context, index) {
-            return Column(
-              children: [
-                ListTile(
-                  subtitle: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text("postId :- ${providerR!.commentList[index]['postId']}"),
-                        Text("name:- ${providerR!.commentList[index]['name']}",
-                          style: TextStyle(overflow: TextOverflow.ellipsis),
+  void showBottom2() {
+    scaffoldKey.currentState!.showBottomSheet(
+      (context) => BottomSheet(
+        onClosing: () {},
+        builder: (context) {
+          return Container(
+            alignment: Alignment.topCenter,
+            child: ListView.builder(
+              itemCount: providerW!.commentList.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      subtitle: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                "postId :- ${providerR!.commentList[index]['postId']}"),
+                            Text(
+                              "name:- ${providerR!.commentList[index]['name']}",
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
+                      title: Column(
+                        children: [
+                          Text("id :- ${providerR!.commentList[index]['id']}"),
+                          Text(
+                              "email :- ${providerR!.commentList[index]['email']}"),
+                          Text(
+                              "body :-${providerR!.commentList[index]['body']}")
+                        ],
+                      ),
                     ),
-                  ),
-                  title: Column(
-                    children: [
-                      Text("id :- ${providerR!.commentList[index]['id']}"),
-                      Text("email :- ${providerR!.commentList[index]['email']}"),
-                      Text("body :-${providerR!.commentList[index]['body']}")
-                    ],
-                  ),
-                ),
-                Divider(),
-              ],
-            );
-          },
-        ),
-      );
-    },),);
+                    const Divider(),
+                  ],
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  void showBottom3() {
+    scaffoldKey.currentState!.showBottomSheet(
+      (context) => BottomSheet(
+        onClosing: () {},
+        builder: (context) {
+          return Container(
+            alignment: Alignment.topCenter,
+            child: ListView.builder(
+              itemCount: providerW!.albumList.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      subtitle: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                "userId :- ${providerR!.albumList[index]['userId']}"),
+                            Text(
+                              "title :- ${providerR!.albumList[index]['title']}",
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis),
+                            ),
+                          ],
+                        ),
+                      ),
+                      title: Column(
+                        children: [
+                          Text("id :- ${providerR!.albumList[index]['id']}"),
+                          // Text(
+                          //     "email :- ${providerR!.commentList[index]['email']}"),
+                          // Text(
+                          //     "body :-${providerR!.commentList[index]['body']}")
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                  ],
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  void showBottom4() {
+    scaffoldKey.currentState!.showBottomSheet(
+      (context) => BottomSheet(
+        onClosing: () {},
+        builder: (context) {
+          return Container(
+            alignment: Alignment.topCenter,
+            child: ListView.builder(
+              itemCount: providerW!.photosList.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      subtitle: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                "albumId :- ${providerR!.photosList[index]['albumId']}"),
+                            Text(
+                              "title :- ${providerR!.photosList[index]['title']}",
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis),
+                            ),
+                          ],
+                        ),
+                      ),
+                      title: Column(
+                        children: [
+                          Text("id :- ${providerR!.photosList[index]['id']}"),
+                          Text("url :- ${providerR!.photosList[index]['url']}"),
+                          Text(
+                              "thumbnaiUrl :- ${providerR!.photosList[index]['thumbnailUrl']}")
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                  ],
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  void showBottom5() {
+    scaffoldKey.currentState!.showBottomSheet(
+      (context) => BottomSheet(
+        onClosing: () {},
+        builder: (context) {
+          return Container(
+            alignment: Alignment.topCenter,
+            child: ListView.builder(
+              itemCount: providerW!.todosList.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      subtitle: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                "userId :- ${providerR!.todosList[index]['userId']}"),
+                            Text(
+                              "title :- ${providerR!.todosList[index]['title']}",
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis),
+                            ),
+                          ],
+                        ),
+                      ),
+                      title: Column(
+                        children: [
+                          Text("id :- ${providerR!.todosList[index]['id']}"),
+                          Text(
+                              "completed :- ${providerR!.todosList[index]['completed']}"),
+                          // Text(
+                          //     "thumbnaiUrl :- ${providerR!.photosList[index]['thumbnailUrl']}")
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                  ],
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  void showBottom6() {
+    scaffoldKey.currentState!.showBottomSheet(
+      (context) => BottomSheet(
+        onClosing: () {},
+        builder: (context) {
+          return Container(
+            alignment: Alignment.topCenter,
+            child: ListView.builder(
+              itemCount: providerW!.usersList.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      subtitle: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("lat :- ${providerR!.usersList[index]['address']['geo']['lat']}"),
+                            Text("lng :- ${providerR!.usersList[index]['address']['geo']['lng']}"),
+                            // Text(
+                            //     "completed :- ${providerR!.todosList[index]['completed']}"),
+                          ],
+                        ),
+                      ),
+                      title: Column(
+                        children: [
+                          Text("id :- ${providerR!.usersList[index]['id']}"),
+                          Text("name :- ${providerR!.usersList[index]['name']}",
+                            style: const TextStyle(
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                          Text("userNamae :- ${providerR!.usersList[index]['username']}"),
+                          Text("email :- ${providerR!.usersList[index]['email']}"),
+                          Text("street :- ${providerR!.usersList[index]['address']['street']}"),
+                          Text("suite :- ${providerR!.usersList[index]['address']['suite']}"),
+                          Text("city :- ${providerR!.usersList[index]['address']['city']}"),
+                          Text("zipcode :- ${providerR!.usersList[index]['address']['zipcode']}"),
+                          Text("phone :- ${providerR!.usersList[index]['phone']}"),
+                          Text("website :- ${providerR!.usersList[index]['website']}"),
+                          Text("company name :- ${providerR!.usersList[index]['company']['name']}"),
+                          Text("company catchPhrase :- ${providerR!.usersList[index]['company']['catchPhrase']}"),
+                          Text("company bs :- ${providerR!.usersList[index]['company']['bs']}"),
+                          // Text(
+                          //     "thumbnaiUrl :- ${providerR!.photosList[index]['thumbnailUrl']}")
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                  ],
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
   }
 }

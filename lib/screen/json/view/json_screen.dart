@@ -20,7 +20,6 @@ class _JsonScreenState extends State<JsonScreen> {
     return Scaffold(appBar: AppBar(title: Text("JsonData"),),
       body: ListView.builder(itemCount: providerW!.postList.length,
         itemBuilder: (context, index) {
-
       },),);
   }
 }
