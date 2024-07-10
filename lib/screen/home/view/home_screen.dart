@@ -45,8 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    showBottom2();
-                  },
+
+showBottom2();                  },
                   child: const Text("Comment")),
               ElevatedButton(
                   onPressed: () {
@@ -63,9 +63,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     showBottom5();
                   },
                   child: Text("todos")),
-              ElevatedButton(onPressed: () {
-                showBottom6();
-              }, child: Text("Users"))
+              ElevatedButton(
+                  onPressed: () {
+                    // showBottom6();
+                  },
+                  child: Text("Users"))
             ],
           ),
         )
@@ -91,34 +93,26 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView.builder(
               itemCount: providerW!.postList.length,
               itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    ListTile(
-                      subtitle: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                                "User Id :- ${providerR!.postList[index]['userId']}"),
-                            Text(
-                              "body :- ${providerR!.postList[index]['body']}",
-                              style: const TextStyle(
-                                  overflow: TextOverflow.ellipsis),
-                            ),
-                          ],
-                        ),
-                      ),
+              return  Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ListTile(
                       title: Column(
                         children: [
-                          Text("Id :- ${providerR!.postList[index]['id']}"),
-                          Text(
-                              "title :- ${providerR!.postList[index]['title']}"),
+                          Text("id :- ${providerR!.postList[index].id}"),
+                          Text("user Id :- ${providerR!.postList[index].userId}")
+                        ],
+                      ),
+                      subtitle: Column(
+                        children: [
+                          Text("title :- ${providerR!.postList[index].title}"),
+                          Text("body :- ${providerR!.postList[index].body}"),
                         ],
                       ),
                     ),
-                    const Divider(),
-                  ],
-                );
+                  Divider(),
+                ],
+              );
               },
             ),
           );
@@ -135,38 +129,28 @@ class _HomeScreenState extends State<HomeScreen> {
           return Container(
             alignment: Alignment.topCenter,
             child: ListView.builder(
-              itemCount: providerW!.commentList.length,
+              itemCount: providerW!.usersList.length,
               itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    ListTile(
-                      subtitle: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                                "postId :- ${providerR!.commentList[index]['postId']}"),
-                            Text(
-                              "name:- ${providerR!.commentList[index]['name']}",
-                              style: const TextStyle(
-                                  overflow: TextOverflow.ellipsis),
-                            ),
-                          ],
-                        ),
-                      ),
+              return  Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ListTile(
                       title: Column(
                         children: [
-                          Text("id :- ${providerR!.commentList[index]['id']}"),
-                          Text(
-                              "email :- ${providerR!.commentList[index]['email']}"),
-                          Text(
-                              "body :-${providerR!.commentList[index]['body']}")
+                          Text("id :- ${providerR!.usersList[index].address!.geo!.lat}"),
+                          Text("user Id :- ${providerR!.usersList[index].address!.geo!.lng}")
+                        ],
+                      ),
+                      subtitle: Column(
+                        children: [
+                          Text("title :- ${providerR!.postList[index].title}"),
+                          Text("body :- ${providerR!.postList[index].body}"),
                         ],
                       ),
                     ),
-                    const Divider(),
-                  ],
-                );
+                  Divider(),
+                ],
+              );
               },
             ),
           );
@@ -174,6 +158,100 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  // void showBottom() {
+  //   scaffoldKey.currentState!.showBottomSheet(
+  //     (context) => BottomSheet(
+  //       onClosing: () {},
+  //       builder: (context) {
+  //         return Container(
+  //           alignment: Alignment.topCenter,
+  //           child: ListView.builder(
+  //             itemCount: providerW!.postList.length,
+  //             itemBuilder: (context, index) {
+  //               return Column(
+  //                 children: [
+  //                   ListTile(
+  //                     subtitle: SingleChildScrollView(
+  //                       child: Column(
+  //                         mainAxisAlignment: MainAxisAlignment.start,
+  //                         children: [
+  //                           Text(
+  //                               "User Id :- ${providerR!.postList[index].userId}"),
+  //                           Text(
+  //                             "body :- ${providerR!.postList[index].body}",
+  //                             style: const TextStyle(
+  //                                 overflow: TextOverflow.ellipsis),
+  //                           ),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                     title: Column(
+  //                       children: [
+  //                         Text("Id :- ${providerR!.postList[index].id}"),
+  //                         Text(
+  //                             "title :- ${providerR!.postList[index].title}"),
+  //                       ],
+  //                     ),
+  //                   ),
+  //                   const Divider(),
+  //                 ],
+  //               );
+  //             },
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
+
+  // void showBottom2() {
+  //   scaffoldKey.currentState!.showBottomSheet(
+  //     (context) => BottomSheet(
+  //       onClosing: () {},
+  //       builder: (context) {
+  //         return Container(
+  //           alignment: Alignment.topCenter,
+  //           child: ListView.builder(
+  //             itemCount: providerW!.commentList.length,
+  //             itemBuilder: (context, index) {
+  //               return Column(
+  //                 children: [
+  //                   ListTile(
+  //                     subtitle: SingleChildScrollView(
+  //                       child: Column(
+  //                         mainAxisAlignment: MainAxisAlignment.start,
+  //                         children: [
+  //                           Text(
+  //                               "postId :- ${providerR!.commentList[index]['postId']}"),
+  //                           Text(
+  //                             "name:- ${providerR!.commentList[index]['name']}",
+  //                             style: const TextStyle(
+  //                                 overflow: TextOverflow.ellipsis),
+  //                           ),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                     title: Column(
+  //                       children: [
+  //                         Text("id :- ${providerR!.commentList[index]['id']}"),
+  //                         Text(
+  //                             "email :- ${providerR!.commentList[index]['email']}"),
+  //                         Text(
+  //                             "body :-${providerR!.commentList[index]['body']}")
+  //                       ],
+  //                     ),
+  //                   ),
+  //                   const Divider(),
+  //                 ],
+  //               );
+  //             },
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 
   void showBottom3() {
     scaffoldKey.currentState!.showBottomSheet(
@@ -318,61 +396,75 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void showBottom6() {
-    scaffoldKey.currentState!.showBottomSheet(
-      (context) => BottomSheet(
-        onClosing: () {},
-        builder: (context) {
-          return Container(
-            alignment: Alignment.topCenter,
-            child: ListView.builder(
-              itemCount: providerW!.usersList.length,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    ListTile(
-                      subtitle: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text("lat :- ${providerR!.usersList[index]['address']['geo']['lat']}"),
-                            Text("lng :- ${providerR!.usersList[index]['address']['geo']['lng']}"),
-                            // Text(
-                            //     "completed :- ${providerR!.todosList[index]['completed']}"),
-                          ],
-                        ),
-                      ),
-                      title: Column(
-                        children: [
-                          Text("id :- ${providerR!.usersList[index]['id']}"),
-                          Text("name :- ${providerR!.usersList[index]['name']}",
-                            style: const TextStyle(
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          Text("userNamae :- ${providerR!.usersList[index]['username']}"),
-                          Text("email :- ${providerR!.usersList[index]['email']}"),
-                          Text("street :- ${providerR!.usersList[index]['address']['street']}"),
-                          Text("suite :- ${providerR!.usersList[index]['address']['suite']}"),
-                          Text("city :- ${providerR!.usersList[index]['address']['city']}"),
-                          Text("zipcode :- ${providerR!.usersList[index]['address']['zipcode']}"),
-                          Text("phone :- ${providerR!.usersList[index]['phone']}"),
-                          Text("website :- ${providerR!.usersList[index]['website']}"),
-                          Text("company name :- ${providerR!.usersList[index]['company']['name']}"),
-                          Text("company catchPhrase :- ${providerR!.usersList[index]['company']['catchPhrase']}"),
-                          Text("company bs :- ${providerR!.usersList[index]['company']['bs']}"),
-                          // Text(
-                          //     "thumbnaiUrl :- ${providerR!.photosList[index]['thumbnailUrl']}")
-                        ],
-                      ),
-                    ),
-                    const Divider(),
-                  ],
-                );
-              },
-            ),
-          );
-        },
-      ),
-    );
-  }
+  // void showBottom6() {
+  //   scaffoldKey.currentState!.showBottomSheet(
+  //     (context) => BottomSheet(
+  //       onClosing: () {},
+  //       builder: (context) {
+  //         return Container(
+  //           alignment: Alignment.topCenter,
+  //           child: ListView.builder(
+  //             itemCount: providerW!.usersList.length,
+  //             itemBuilder: (context, index) {
+  //               return Column(
+  //                 children: [
+  //                   ListTile(
+  //                     subtitle: SingleChildScrollView(
+  //                       child: Column(
+  //                         mainAxisAlignment: MainAxisAlignment.start,
+  //                         children: [
+  //                           Text(
+  //                               "lat :- ${providerR!.usersList[index]['address']['geo']['lat']}"),
+  //                           Text(
+  //                               "lng :- ${providerR!.usersList[index]['address']['geo']['lng']}"),
+  //                           // Text(
+  //                           //     "completed :- ${providerR!.todosList[index]['completed']}"),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                     title: Column(
+  //                       children: [
+  //                         Text("id :- ${providerR!.usersList[index]['id']}"),
+  //                         Text(
+  //                           "name :- ${providerR!.usersList[index]['name']}",
+  //                           style: const TextStyle(
+  //                               overflow: TextOverflow.ellipsis),
+  //                         ),
+  //                         Text(
+  //                             "userNamae :- ${providerR!.usersList[index]['username']}"),
+  //                         Text(
+  //                             "email :- ${providerR!.usersList[index]['email']}"),
+  //                         Text(
+  //                             "street :- ${providerR!.usersList[index]['address']['street']}"),
+  //                         Text(
+  //                             "suite :- ${providerR!.usersList[index]['address']['suite']}"),
+  //                         Text(
+  //                             "city :- ${providerR!.usersList[index]['address']['city']}"),
+  //                         Text(
+  //                             "zipcode :- ${providerR!.usersList[index]['address']['zipcode']}"),
+  //                         Text(
+  //                             "phone :- ${providerR!.usersList[index]['phone']}"),
+  //                         Text(
+  //                             "website :- ${providerR!.usersList[index]['website']}"),
+  //                         Text(
+  //                             "company name :- ${providerR!.usersList[index]['company']['name']}"),
+  //                         Text(
+  //                             "company catchPhrase :- ${providerR!.usersList[index]['company']['catchPhrase']}"),
+  //                         Text(
+  //                             "company bs :- ${providerR!.usersList[index]['company']['bs']}"),
+  //                         // Text(
+  //                         //     "thumbnaiUrl :- ${providerR!.photosList[index]['thumbnailUrl']}")
+  //                       ],
+  //                     ),
+  //                   ),
+  //                   const Divider(),
+  //                 ],
+  //               );
+  //             },
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 }
